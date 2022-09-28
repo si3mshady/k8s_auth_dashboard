@@ -3,10 +3,24 @@ import './App.css';
 import { Button } from 'antd';
 import { Layout } from 'antd';
 import React from 'react';
+import axios from 'axios'
 
-const { Header, Footer,  Content } = Layout;
+
+
+
 
 function App() {
+  const { Header, Footer,  Content } = Layout;
+const [input,setInput] = React.useState('')
+const [textArea,setTextArea] = React.useState('')
+
+
+const sendRequest = () => {
+console.log(textArea)
+setTextArea('')
+setInput('')
+}
+
   return (
     <> 
     
@@ -25,25 +39,23 @@ function App() {
 
             <div className='content_container_endpoint'>
 
-            <p>Endpoint</p>
-            <input className='content_container_endpoint' type="text" placeholder="endpoint"/>
-            </div>
+                <p>Endpoint</p>
+                <input onChange={(e) => {setInput(e.target.value)}} value={input} className='content_container_endpoint' type="text" placeholder="endpoint"/>
+                </div>
 
 
-            <div className='content_container_token'>
-            <p>Token</p>
+                <div className='content_container_token'>
+                <p>Token</p>
 
-            <textarea id="w3review" placeholder="token" name="w3review" rows="15" cols="50"/>
+                <textarea onChange={(e) => {setTextArea(e.target.value)}}value={textArea}   placeholder="token" tiy rows="15" cols="50"/>
 
             </div>
 
             </div>
 
        
-            <Button onClick={()=> {console.log('Boom')}} type='primary' className='form_button'>Load Dashboard</Button>
+            <Button onClick={()=> {sendRequest()}} type='primary' className='form_button'>Load Dashboard</Button>
            
-
-             
 
       </form>
   
