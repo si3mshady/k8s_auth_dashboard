@@ -3,22 +3,38 @@ import './App.css';
 import { Button } from 'antd';
 import { Layout } from 'antd';
 import React from 'react';
+import https from 'https'
 import axios from 'axios'
-
-
+import fs from 'fs'
 
 
 
 function App() {
   const { Header, Footer,  Content } = Layout;
 const [input,setInput] = React.useState('')
-const [textArea,setTextArea] = React.useState('')
+const [token,setTextArea] = React.useState('')
 
 
-const sendRequest = () => {
-console.log(textArea)
-setTextArea('')
-setInput('')
+
+
+
+xx
+
+// const httpsAgent = new https.Agent(options)
+
+const sendRequest = async () => {
+
+  const httpsAgent = new https.Agent( {
+
+    rejectUnauthorized: false
+
+   
+  
+  })
+  // kubectl config view | grep http
+  const result = await axios.get('https://myserver.internal.net:9443', { httpsAgent });
+  console.log(result)
+
 }
 
   return (
@@ -47,7 +63,7 @@ setInput('')
                 <div className='content_container_token'>
                 <p>Token</p>
 
-                <textarea onChange={(e) => {setTextArea(e.target.value)}}value={textArea}   placeholder="token" tiy rows="15" cols="50"/>
+                <textarea onChange={(e) => {setTextArea(e.target.value)}}value={token}   placeholder="token" tiy rows="15" cols="50"/>
 
             </div>
 
