@@ -11,9 +11,11 @@ import axios from 'axios'
 
 function App() {
   const { Header, Footer,  Content } = Layout;
-const [endpoint,setEndpoint] = React.useState('')
+const [input,setInput] = React.useState('')
 const [token,setTextArea] = React.useState('')
-const [footerData,setFooterData] = React.useState([])
+
+// const Btoken = 'eyJhbGciOiJSUzI1NiIsImtpZCI6ImtmY1VSTHJ5MFB0Wmdsc25lNG0xaUtlcEJ0RmhGUXQwRWJNQ2dXamN5WUEifQ.eyJhdWQiOlsiaHR0cHM6Ly9rdWJlcm5ldGVzLmRlZmF1bHQuc3ZjLmNsdXN0ZXIubG9jYWwiXSwiZXhwIjoxNjY0ODQzMDg0LCJpYXQiOjE2NjQ4Mzk0ODQsImlzcyI6Imh0dHBzOi8va3ViZXJuZXRlcy5kZWZhdWx0LnN2Yy5jbHVzdGVyLmxvY2FsIiwia3ViZXJuZXRlcy5pbyI6eyJuYW1lc3BhY2UiOiJkZWZhdWx0Iiwic2VydmljZWFjY291bnQiOnsibmFtZSI6ImRlZmF1bHQiLCJ1aWQiOiJhNTk0YmEyNi0wYmJmLTQ4OTItOWMxNy1hNzFlYzNhMGE0ZTEifX0sIm5iZiI6MTY2NDgzOTQ4NCwic3ViIjoic3lzdGVtOnNlcnZpY2VhY2NvdW50OmRlZmF1bHQ6ZGVmYXVsdCJ9.WUYJ6EOBPnR8xGwmlaYJknMWbhLq-OfvU4iMoOXFvfyI9vFip_lPbQ8kCmTMigITL1141qCIn_J99romHJdV6e3BEglLzLDYDYO22FlkohtaP9aRZTe8hA_iqQDef23o25IPqH8-dLOeL1daN9y1ZfGTkTG0M6mSxulVt-FtoOWTSpVjNkOE_du_JWDVj9YtBwjfstxZm6Nrb9Sl_yJMdL45AzoUkT8RERAWZSYyYiKh0QjfVULwiY61Z9nPdu822sbqO9GccO7ANQE74-YCgLAVxEuKEnfih8Km-gEaLZv4p1dbXlLesPQezgdLJFp3t8Lj-ZK0folUTrm4hgqZQA'
+  // kubectl config view | grep http
 
 
 const sendRequest = async () => {
@@ -22,16 +24,21 @@ const sendRequest = async () => {
   
       console.log(token)
     try {
-       const result = await axios.post('http://localhost:9000/token', { token: token, endpoint: endpoint });
-    // console.log(result.data)
-    setFooterData(result.data.groups)
-
-    // setFooterData(result.data.groups)
+       const result = await axios.post('http://localhost:9000/token', { token: token });
+    console.log(result.data)
     } catch (error) {
         console.log(error)
     }
 
+
+
+  
   }
+
+  // sendRequest()
+
+// const httpsAgent = new https.Agent(options)
+
 
 
   return (
@@ -53,7 +60,7 @@ const sendRequest = async () => {
             <div className='content_container_endpoint'>
 
                 <p>Endpoint</p>
-                <input onChange={(e) => {setEndpoint(e.target.value)}} value={endpoint} className='content_container_endpoint' type="text" placeholder="endpoint"/>
+                <input onChange={(e) => {setInput(e.target.value)}} value={input} className='content_container_endpoint' type="text" placeholder="endpoint"/>
                 </div>
 
 
@@ -73,10 +80,7 @@ const sendRequest = async () => {
       </form>
   
       </Content>
-      <Footer>
-        {footerData.map((val) =>  (  <div>{val.name}</div>))}
-      
-      </Footer>
+      <Footer>Footer</Footer>
     </Layout>
 
      </>
