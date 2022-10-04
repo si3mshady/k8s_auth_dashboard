@@ -74,7 +74,13 @@ const sendRequest = async () => {
   
       </Content>
       <Footer>
-        {footerData.map((val) =>  (  <div>{val.name}</div>))}
+
+      <div className='footerContainer'>
+      
+        {footerData.map((val, i) =>  (  <div key={i} className='footerContainer_row'><p>{val.name}</p></div>))}
+        
+      </div>
+      
       
       </Footer>
     </Layout>
